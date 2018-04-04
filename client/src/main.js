@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import NewPost from './components/NewPost.vue'
 
 Vue.config.productionTip = false
+
+Vue.component('new-post', NewPost)
 
 /* eslint-disable no-new */
 new Vue({

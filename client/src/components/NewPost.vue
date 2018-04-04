@@ -15,6 +15,7 @@
   </div>
 </template>
 
+
 <script>
 import PostsService from '@/services/PostsService'
 export default {
