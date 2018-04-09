@@ -1,15 +1,10 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Counter: {{ count }}</h2>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-  </div>
+  <hello></hello>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Index',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -27,7 +22,7 @@ export default {
     decrement () {
       this.$store.commit('decrement')
     }
-  }
+  },
 }
 </script>
 
