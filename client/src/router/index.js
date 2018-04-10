@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Posts from '@/components/Posts'
 import NewPost from '@/components/NewPost'
 import EditPost from '@/components/EditPost'
+import Callback from '@/components/Callback'
 
 Vue.use(Router)
 
@@ -29,6 +30,15 @@ export default new Router({
       path: '/posts/:id',
       name: 'EditPost',
       component: EditPost
+    },
+    {
+      path: '/callback',
+      name: 'Callback',
+      component: Callback
+    },
+    {
+      path: '*',
+      redirect: '/home'
     }
   ]
 })

@@ -6,19 +6,53 @@
         <h3 class="uk-card-title">Example headline</h3>
 
         <button class="uk-button uk-button-default" uk-tooltip="title: Hello World">Hover</button>
+        <button
+            class="uk-button uk-button-default"
+            v-if="!authenticated"
+            @click="login()">
+              Log In
+          </button>
+
+          <button
+            class="uk-button uk-button-default"
+            v-if="authenticated"
+            @click="logout()">
+              Log Out
+          </button>
       </div>
     </div>
-    <router-view/>
+    <router-view  
+      :auth="auth" 
+      :authenticated="authenticated" />
   </div>
 </template>
 
 <script>
 import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
+import AuthService from './services/AuthService'
+
+const auth = new AuthService()
+
+const { login, logout, authenticated, authNotifier } = auth
+
 
 UIkit.use(Icons)
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    authNotifier.on('authChange', authState => {
+      this.authenticated = authState.authenticated
+    })
+    return {
+      auth,
+      authenticated
+    }
+  },
+  methods: {
+    login,
+    logout
+  }
 }
 </script>
 

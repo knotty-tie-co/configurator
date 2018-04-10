@@ -14,7 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@okta/okta-auth-js": "^1.15.0",
+    "EventEmitter": "^1.0.0",
+    "auth0-js": "^9.4.2",
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "less": "^3.0.1",
