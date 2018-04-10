@@ -34,6 +34,8 @@ import AuthService from './services/AuthService'
 
 const auth = new AuthService()
 
+
+
 const { login, logout, authenticated, authNotifier } = auth
 
 

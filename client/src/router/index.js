@@ -5,6 +5,7 @@ import Posts from '@/components/Posts'
 import NewPost from '@/components/NewPost'
 import EditPost from '@/components/EditPost'
 import Callback from '@/components/Callback'
+import Restricted from '@/components/Restricted'
 
 Vue.use(Router)
 
@@ -37,8 +38,13 @@ export default new Router({
       component: Callback
     },
     {
+      path: '/restricted',
+      name: 'Restricted',
+      component: Restricted
+    },
+    {
       path: '*',
-      redirect: '/home'
+      redirect: '/'
     }
   ]
 })
