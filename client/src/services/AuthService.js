@@ -3,6 +3,8 @@ import { AUTH_CONFIG } from './auth0-variables'
 import EventEmitter from 'eventemitter3'
 import router from './../router'
 
+let userProfile
+
 export default class AuthService {
   authenticated = this.isAuthenticated()
   authNotifier = new EventEmitter()
@@ -12,6 +14,8 @@ export default class AuthService {
     this.setSession = this.setSession.bind(this)
     this.logout = this.logout.bind(this)
     this.isAuthenticated = this.isAuthenticated.bind(this)
+    this.getProfile = this.getProfile.bind(this)
+    this.displayProfile = this.displayProfile.bind(this)
   }
 
   auth0 = new auth0.WebAuth({
@@ -20,7 +24,7 @@ export default class AuthService {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   })
 
   login () {
@@ -41,6 +45,7 @@ export default class AuthService {
   }
 
   setSession (authResult) {
+    console.log(authResult)
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -68,4 +73,39 @@ export default class AuthService {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
+
+  displayProfile(profile) {
+    // display the profile
+    console.log(profile)
+    // document.querySelector('#profile-view .nickname').innerHTML =
+    //   userProfile.nickname;
+      
+    // document.querySelector(
+    //   '#profile-view .full-profile'
+    // ).innerHTML = JSON.stringify(userProfile, null, 2);
+
+    // document.querySelector('#profile-view img').src = userProfile.picture;
+    return profile
+  }
+
+  getProfile() {
+    if (!userProfile) {
+      var accessToken = localStorage.getItem('access_token');
+
+      if (!accessToken) {
+        console.log('Access Token must exist to fetch profile');
+      }
+
+      this.auth0.client.userInfo(accessToken, function(err, profile) {
+        if (profile) {
+          console.log(profile)
+          this.displayProfile(profile);
+        }
+      });
+    } else {
+      this.displayProfile();
+    }
+  }
+
+  
 }

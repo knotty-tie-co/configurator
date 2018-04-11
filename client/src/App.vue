@@ -19,6 +19,12 @@
             @click="logout()">
               Log Out
           </button>
+          <button
+            class="uk-button uk-button-default"
+            v-if="authenticated"
+            @click="getProfile()">
+              Get Profile
+          </button>
       </div>
     </div>
     <router-view  
@@ -34,9 +40,7 @@ import AuthService from './services/AuthService'
 
 const auth = new AuthService()
 
-
-
-const { login, logout, authenticated, authNotifier } = auth
+const { login, logout, authenticated, authNotifier, getProfile, displayProfile } = auth
 
 
 UIkit.use(Icons)
@@ -53,7 +57,9 @@ export default {
   },
   methods: {
     login,
-    logout
+    logout,
+    getProfile,
+    displayProfile
   }
 }
 </script>
