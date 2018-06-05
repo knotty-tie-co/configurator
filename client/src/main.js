@@ -4,13 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index.js'
+import Configurator from './components/Configurator.vue'
 import NewPost from './components/NewPost.vue'
 import Hello from './components/Hello.vue'
+
 
 Vue.config.productionTip = false
 
 Vue.component('new-post', NewPost)
 Vue.component('hello', Hello)
+Vue.component('configurator', Configurator)
 
 /* eslint-disable no-new */
 new Vue({

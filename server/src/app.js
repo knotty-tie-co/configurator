@@ -4,6 +4,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 
+
+const Shopify = require('shopify-api-node');
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/configurator');
 var db = mongoose.connection;
@@ -19,6 +22,41 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+
+
+const SHOPIFY_CONFIG = require('./shopify-variables')
+
+const shopify = new Shopify(SHOPIFY_CONFIG);
+
+// Fetch order from Shopify
+
+app.get('/orders', (req, res) => {
+  shopify.order.list({ limit: 5 })
+  .then(orders => res.send({
+      orders
+    }))
+  .catch(err => console.error(err));
+})
+
+// Create product on Shopify
+
+app.post('/products', (req, res) => {
+  var title = "api test product";
+  var productType = "Configurable Tie";
+  var vendor = "Knotty Tie Co.";
+  var template = "real-photo"
+  shopify.product.create({
+    "title": title,
+    "body_html": "test product via api",
+    "vendor": vendor,
+    "template_suffix": template,
+    "product_type": productType
+})
+  .then(product => res.send({
+      product
+    }))
+  .catch(err => console.error(err));
+})
 
 // Fetch all posts
 app.get('/posts', (req, res) => {

@@ -38,6 +38,7 @@ import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 import AuthService from './services/AuthService'
 
+
 const auth = new AuthService()
 
 const { login, logout, authenticated, authNotifier, getProfile, displayProfile } = auth

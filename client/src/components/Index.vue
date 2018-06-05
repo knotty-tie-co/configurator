@@ -1,6 +1,8 @@
 <template>
 	<div>
+      <p>hello</p>
 	    <hello></hello>
+      <color></color>
 	</div>
 </template>
 

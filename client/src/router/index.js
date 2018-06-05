@@ -6,6 +6,8 @@ import NewPost from '@/components/NewPost'
 import EditPost from '@/components/EditPost'
 import Callback from '@/components/Callback'
 import Restricted from '@/components/Restricted'
+import Color from '@/components/Color'
+import Configurator from '@/components/Configurator'
 
 Vue.use(Router)
 
@@ -18,9 +20,19 @@ export default new Router({
       component: Index
     },
     {
+      path: '/configurator',
+      name: 'Configurator',
+      component: Configurator
+    },
+    {
       path: '/posts',
       name: 'Posts',
       component: Posts
+    },
+    {
+      path: '/color',
+      name: 'Color',
+      component: Color
     },
     {
       path: '/posts/new',
