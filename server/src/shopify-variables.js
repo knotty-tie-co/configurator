@@ -1,5 +1,5 @@
 module.exports = {
   shopName: 'knotty-tie-company',
-  apiKey: 'a4d952f25006eae2618b8dd23c79b100',
-  password: '9906ee3eed5f07254d9cb5606da06391'
+  apiKey: '2f7ade2fef6ff385156a96881fa92507',
+  password: '3942d653c48b5f3fedd4539a823a6034'
 }
