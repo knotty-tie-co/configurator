@@ -47,7 +47,7 @@ app.post('/products', (req, res) => {
   var template = "real-photo"
   shopify.product.create({
     "title": title,
-    "body_html": "test product via api",
+    "body_html": req.body.description,
     "vendor": vendor,
     "template_suffix": template,
     "product_type": productType

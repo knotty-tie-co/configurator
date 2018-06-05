@@ -17,21 +17,36 @@
         <option value="orange">Orange</option>
         <option value="blue">Blue</option>
         <option value="green">Green</option>
-      </select>
+      </select><br>
+      <button v-on:click="addProduct">Create product</button>
+      <a v-if="productLink" :href="productLink">Product link</a>
   </div>
 </template>
 
 
 <script>
+	import ProductsService from '@/services/ProductsService'
 export default {
   name: 'Configurator',
   data () {
     return {
       shape1color: 'orange',
-      shape2color: 'orange'
+      shape2color: 'orange',
+      title: 'test from client',
+      description: 'test from client',
+      productLink: ""
     }
   },
   methods: {
+    async addProduct () {
+    	const response = await ProductsService.addProduct({
+    		  title: this.title,
+    		  description: this.description
+    		})
+
+    	console.log(response.data)
+    	this.productLink = "https://www.knottytie.com/products/" + response.data.product.handle
+    }
   }
 }
 </script>
