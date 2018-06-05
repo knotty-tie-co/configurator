@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-const SHOPIFY_CONFIG = require('./shopify-variables')
+const SHOPIFY_CONFIG = require('./shopify-vars')
 
 const shopify = new Shopify(SHOPIFY_CONFIG);
 
